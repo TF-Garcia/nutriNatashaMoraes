@@ -90,19 +90,40 @@ const differentials = [
 
 const testimonials = [
   {
+    name: "Paciente Google",
+    time: "2 dias atrás",
     quote:
-      "Eu não me sinto largada depois da consulta. Ela sabe escutar, entende o momento da gente e orienta com muito carinho.",
-    label: "Avaliação Google",
+      "A Drª Natasha é simplesmente maravilhosa! Atenciosa e escuta você e entende realmente o que você precisa !! Estou com ela a 2 meses e minha evolução está sendo simplesmente incrível !! Obrigada Drª por tanto cuidado e profissionalismo.",
   },
   {
+    name: "Viviani Barros",
+    time: "uma semana atrás",
     quote:
-      "Profissional maravilhosa, com acolhimento ímpar. Explica o passo a passo com muita sabedoria.",
-    label: "Avaliação Google",
+      "Muito atenciosa, a Dra. Natasha mostrou - se super disponível em me ajudar na minha alimentação. Acredito que vai da certo. Obrigada pelo carinho e cuidado.",
   },
   {
+    name: "Ana Paula Pinheiro",
+    time: "uma semana atrás",
     quote:
-      "Atendimento humano, seguro e estratégico para um momento muito importante da minha vida.",
-    label: "Paciente acompanhada",
+      "Amei o acompanhamento. Excelente profissional e ser humano. Muito dedicada em tudo que faz e atenciosa com seus clientes! Parabéns Natasha!!!",
+  },
+  {
+    name: "Nivia Pereira",
+    time: "2 semanas atrás",
+    quote:
+      "Profissional maravilhosa, com um acolhimento ímpar, escuta tudo com muito carinho, explica o passo a passo com muita sabedoria. Super indico",
+  },
+  {
+    name: "nicole pereira",
+    time: "4 semanas atrás",
+    quote:
+      "A melhor escolha que eu poderia fazer! Uma baita profissional, super acolhedora e de um conhecimento absurdo!!! Me sinto muito feliz em ter uma profissional como ela me acompanhando.",
+  },
+  {
+    name: "Danielle Alves Ferreira",
+    time: "um mês atrás",
+    quote:
+      "Atendimento super personalizado e acolhedor, uma profissional atualizada que sempre traz novidades em cada nova consulta.",
   },
 ];
 
@@ -320,33 +341,54 @@ const Index = () => {
               <div className="relative overflow-hidden rounded-[2rem] border border-border bg-paper shadow-[var(--shadow-elegant)]">
                 <div className="relative aspect-[4/5]">
                   <img
-                    src={PORTRAIT_IMAGE}
-                    alt="Natasha Moraes em seu consultório"
+                    src={HERO_IMAGE}
+                    alt=""
                     className="h-full w-full object-cover object-center"
                   />
-                  <div className="absolute inset-x-5 bottom-5 rounded-[1.5rem] border border-background/60 bg-background/88 p-6 shadow-[var(--shadow-card)] backdrop-blur">
-                    <div>
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                        <Leaf className="h-5 w-5" />
-                      </span>
-                      <p className="mt-5 font-serif text-2xl leading-tight text-primary">
-                        "Eu não me sinto largada depois da consulta."
-                      </p>
-                    </div>
-                    <div className="mt-4 space-y-4">
-                      <p className="text-sm leading-relaxed text-muted-foreground">
-                        Acolhimento, escuta e um plano claro para que a paciente saiba
-                        o que fazer antes, durante e depois da consulta.
-                      </p>
-                      <div className="flex gap-1 text-accent" aria-label="5 estrelas">
-                        {Array.from({ length: 5 }).map((_, index) => (
-                          <Star key={index} className="h-4 w-4 fill-current" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,hsl(var(--foreground)/0.08)_0%,hsl(var(--foreground)/0.18)_48%,hsl(var(--foreground)/0.55)_100%)]" />
+                  <div className="absolute inset-x-5 bottom-5">
+                    <Carousel opts={{ align: "start", loop: true }}>
+                      <CarouselContent>
+                        {testimonials.map((testimonial) => (
+                          <CarouselItem key={`sobre-${testimonial.name}`}>
+                            <article className="relative rounded-[1.5rem] border border-background/60 bg-background/90 p-6 shadow-[var(--shadow-card)] backdrop-blur">
+                              <div className="absolute right-4 top-4 flex gap-2">
+                                <CarouselPrevious
+                                  aria-label="Avaliação anterior"
+                                  title="Avaliação anterior"
+                                  className="static h-9 w-9 translate-y-0 border-primary/20 bg-background/95 text-primary shadow-sm hover:bg-rose-soft"
+                                />
+                                <CarouselNext
+                                  aria-label="Próxima avaliação"
+                                  title="Próxima avaliação"
+                                  className="static h-9 w-9 translate-y-0 border-primary/20 bg-background/95 text-primary shadow-sm hover:bg-rose-soft"
+                                />
+                              </div>
+                              <Quote className="h-7 w-7 text-accent" />
+                              <p className="mt-5 font-serif text-xl leading-tight text-primary">
+                                "{testimonial.quote}"
+                              </p>
+                              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+                                <div>
+                                  <p className="font-semibold text-primary">{testimonial.name}</p>
+                                  <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                                    {testimonial.time}
+                                  </p>
+                                </div>
+                                <div className="flex gap-1 text-accent" aria-label="5 estrelas">
+                                  {Array.from({ length: 5 }).map((_, index) => (
+                                    <Star key={index} className="h-4 w-4 fill-current" />
+                                  ))}
+                                </div>
+                              </div>
+                            </article>
+                          </CarouselItem>
                         ))}
-                      </div>
+                      </CarouselContent>
+                    </Carousel>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
 
             <div>
@@ -485,7 +527,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="bg-secondary py-24 lg:py-28">
+        <section id="depoimentos" className="bg-secondary py-24 lg:py-28">
           <div className="container mx-auto">
             <div className="mx-auto max-w-3xl text-center">
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">
@@ -507,9 +549,12 @@ const Index = () => {
                       </p>
                       <div className="mt-8 border-t border-border pt-5">
                         <div className="flex items-center justify-between gap-4">
-                          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                            {testimonial.label}
-                          </span>
+                          <div>
+                            <p className="font-semibold text-primary">{testimonial.name}</p>
+                            <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                              {testimonial.time}
+                            </p>
+                          </div>
                           <div className="flex gap-1 text-accent">
                             {Array.from({ length: 5 }).map((_, index) => (
                               <Star key={index} className="h-4 w-4 fill-current" />
@@ -521,8 +566,18 @@ const Index = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="-left-2 bg-background text-primary lg:-left-12" />
-              <CarouselNext className="-right-2 bg-background text-primary lg:-right-12" />
+              <div className="mt-8 flex justify-center gap-3 lg:mt-0">
+                <CarouselPrevious
+                  aria-label="Avaliação anterior"
+                  title="Avaliação anterior"
+                  className="static h-11 w-11 translate-y-0 border-primary/20 bg-background text-primary shadow-sm hover:bg-rose-soft lg:absolute lg:-left-12 lg:top-1/2 lg:-translate-y-1/2"
+                />
+                <CarouselNext
+                  aria-label="Próxima avaliação"
+                  title="Próxima avaliação"
+                  className="static h-11 w-11 translate-y-0 border-primary/20 bg-background text-primary shadow-sm hover:bg-rose-soft lg:absolute lg:-right-12 lg:top-1/2 lg:-translate-y-1/2"
+                />
+              </div>
             </Carousel>
           </div>
         </section>
